@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+import webbrowser
+import uvicorn
 
 app = FastAPI()
 
@@ -45,3 +47,11 @@ def delete_item(item_id: int):
             inventory.pop(i)
             return {"message": "Item deleted"}
     raise HTTPException(status_code=404, detail="Item not found")
+# --- 4. AUTOMATIC BROWSER LAUNCH ---
+if __name__ == "__main__":
+    # This opens the browser automatically
+    webbrowser.open("http://127.0.0.1:8000/docs")
+    
+    # This starts the server programmatically
+    
+    uvicorn.run(app, host="127.0.0.1", port=8000)
