@@ -3,7 +3,11 @@ from pydantic import BaseModel
 import webbrowser
 import uvicorn
 
-app = FastAPI()
+app = FastAPI(
+    title="Inventory Management API",
+    description="A simple API to manage stock items (Create, Read, Update, Delete).",
+    version="1.0.0"
+)
 
 # --- 1. DATA MODEL ---
 class Item(BaseModel):
@@ -53,5 +57,4 @@ if __name__ == "__main__":
     webbrowser.open("http://127.0.0.1:8000/docs")
     
     # This starts the server programmatically
-    
     uvicorn.run(app, host="127.0.0.1", port=8000)
